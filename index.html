@@ -104,5 +104,43 @@
     <button id="next-btn">
         <i class="fas fa-arrow-circle-right"></i>
     </button>
+
+        <script>
+        // Disable right-click
+        document.addEventListener('contextmenu', event => event.preventDefault());
+    
+        // Disable common screenshot keys
+        document.addEventListener('keydown', function(event) {
+            // F12 for Developer Tools
+            if (event.key === "F12") {
+                event.preventDefault();
+            }
+            // CTRL + SHIFT + I for Developer Tools
+            if (event.ctrlKey && event.shiftKey && event.key === 'I') {
+                event.preventDefault();
+            }
+            // CTRL + SHIFT + J for Console
+            if (event.ctrlKey && event.shiftKey && event.key === 'J') {
+                event.preventDefault();
+            }
+            // CTRL + U for View Source
+            if (event.ctrlKey && event.key === 'U') {
+                event.preventDefault();
+            }
+            // Print Screen
+            if (event.key === 'PrintScreen') {
+                alert("Screenshots are disabled on this website.");
+                event.preventDefault();
+            }
+        });
+    </script>
+    <script>
+        document.addEventListener('keyup', (event) => {
+            if (event.key === 'PrintScreen') {
+                navigator.clipboard.writeText('');
+                alert("Screenshots are disabled on this website.");
+            }
+        });
+    </script>
 </body>
 </html>

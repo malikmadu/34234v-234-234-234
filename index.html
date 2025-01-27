@@ -3,19 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=1024">
     <title>Dear Crush</title>
     <link rel="icon" type=".png" href="R.png">
     <link rel="stylesheet" href="./style.css">
     <script src="./main.js" defer></script>
     <script src="https://kit.fontawesome.com/2e02115c1b.js" crossorigin="anonymous"></script>
+
+    <style>
+        /* Force desktop view on mobile */
+        body {
+            width: 1024px;
+            margin: 0 auto;
+            overflow-x: scroll; /* Allows horizontal scrolling */
+        }
+    </style>
 </head>
 <body>
     <!-- Previous Button -->
     <button id="prev-btn">
         <i class="fas fa-arrow-circle-left"></i>
     </button>
-
 
     <!-- Book -->
     <div id="book" class="book">
@@ -24,7 +32,6 @@
             <div class="front">
                 <div id="f1" class="front-content">
                     <img class="cover-img" src="./1.png" alt="cover">
-                    
                 </div>
             </div>
             <div class="back">
@@ -105,36 +112,22 @@
         <i class="fas fa-arrow-circle-right"></i>
     </button>
 
-        <script>
+    <script>
         // Disable right-click
         document.addEventListener('contextmenu', event => event.preventDefault());
-    
+
         // Disable common screenshot keys
         document.addEventListener('keydown', function(event) {
-            // F12 for Developer Tools
-            if (event.key === "F12") {
+            if (event.key === "F12" || 
+                (event.ctrlKey && event.shiftKey && (event.key === 'I' || event.key === 'J')) || 
+                (event.ctrlKey && event.key === 'U') || 
+                event.key === 'PrintScreen') {
                 event.preventDefault();
-            }
-            // CTRL + SHIFT + I for Developer Tools
-            if (event.ctrlKey && event.shiftKey && event.key === 'I') {
-                event.preventDefault();
-            }
-            // CTRL + SHIFT + J for Console
-            if (event.ctrlKey && event.shiftKey && event.key === 'J') {
-                event.preventDefault();
-            }
-            // CTRL + U for View Source
-            if (event.ctrlKey && event.key === 'U') {
-                event.preventDefault();
-            }
-            // Print Screen
-            if (event.key === 'PrintScreen') {
                 alert("Screenshots are disabled on this website.");
-                event.preventDefault();
             }
         });
-    </script>
-    <script>
+
+        // Clear clipboard on PrintScreen
         document.addEventListener('keyup', (event) => {
             if (event.key === 'PrintScreen') {
                 navigator.clipboard.writeText('');
